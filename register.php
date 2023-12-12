@@ -1,3 +1,6 @@
+<?php
+include_once './inc/register.php';
+?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en" dir="ltr">
@@ -12,12 +15,12 @@
 <body>
   <div class="wrapper">
     <h2>Registration</h2>
-    <form action="#">
+    <form action="#" method="POST">
       <div class="input-box">
-        <input type="text" placeholder="Enter your name" required>
+        <input type="text" name="username" placeholder="Enter your name" required>
       </div>
       <div class="input-box">
-        <input type="text" placeholder="Enter your email" required>
+        <input type="text" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
         <input type="password" placeholder="Create password" required>
