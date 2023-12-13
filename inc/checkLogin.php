@@ -1,19 +1,35 @@
-<?php 
+<?php
 require("./inc/connection.php");
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
-    $sql = "SELECT `username`, `password` FROM `users` WHERE `username` = '$username' AND `password` = '$dehash'";
+    echo $password;
+
+    $sql = "SELECT * FROM users WHERE username ='$username'";
     $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        echo 'Login successful!';
-        header('Location: home.php');
+
+    if ($result) {
+        $row = mysqli_fetch_array($result);
+        $hash = $row['password'];
+        echo "<br>
+        $hash
+        <br>";
+        echo "<br>
+        $password
+        <br>";
+        
+
+        if (password_verify("$password",$hash)) { 
+            echo 'Login successful!';
+            header('Location: home.php');
+        } else {
+
+            echo "DAMN";
+        }
     } else {
-        echo 'Invalid username or password';
+        echo 'Invalid username or password 222222';
+        die();
     }
 }
-
-?>
