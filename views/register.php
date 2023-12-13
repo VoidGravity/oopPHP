@@ -1,5 +1,5 @@
 <?php
-include_once './inc/register.php';
+include_once '../inc/registerLogic.php';
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
@@ -9,7 +9,7 @@ include_once './inc/register.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Registration or Sign Up form in HTML CSS | CodingLab </title>
-  <link rel="stylesheet" href="styles/registerstyle.css">
+  <link rel="stylesheet" href="../assets/styles/registerstyle.css">
 </head>
 
 <body>
@@ -17,16 +17,16 @@ include_once './inc/register.php';
     <h2>Registration</h2>
     <form action="#" method="POST">
       <div class="input-box">
-        <input type="text" name="username" placeholder="Enter your name" required>
+        <input type="text" name="username" placeholder="Enter your username" required>
       </div>
       <div class="input-box">
-        <input type="text" name="email" placeholder="Enter your email" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
         <input type="password" name = "password" placeholder="Create password" required>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Confirm password" required>
+        <input type="password" name="password2" placeholder="Confirm password" required>
       </div>
       <div class="policy">
         <input type="checkbox">
