@@ -1,10 +1,28 @@
 <?php
+session_start();
+if (isset($_SESSION['username'])) {
+  header('Location: index.php');
+}
+require("./inc/connection.php");
 
-require("./inc/checkLogin.php");
-
-
-
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $sql = "SELECT * FROM users WHERE username = '$username'";
+  $result = mysqli_query($conn, $sql);
+  if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    if (password_verify($password, $row['password'])) {
+      echo 'Login successful!';
+      $_SESSION['username'] = $username;
+      header('Location: index.php');
+    } else {
+      echo 'Login failed!';
+    }
+  } else {
+    echo 'Login failed!';
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +60,7 @@ require("./inc/checkLogin.php");
       </form>
     </div>
   </div>
+
 
 
 

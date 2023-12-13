@@ -23,7 +23,7 @@ include_once './inc/register.php';
         <input type="text" name="email" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Create password" required>
+        <input type="password" name = "password" placeholder="Create password" required>
       </div>
       <div class="input-box">
         <input type="password" placeholder="Confirm password" required>
