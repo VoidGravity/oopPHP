@@ -1,5 +1,5 @@
 <?php
-include_once '../inc/registerLogic.php';
+include_once '../controllers/registerLogic.php';
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->

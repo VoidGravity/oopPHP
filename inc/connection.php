@@ -1,26 +1,18 @@
 <?php
+
+require_once __DIR__.'/../configs/db.config.php';
+
 class Connection
 {
-    var $host;
-    var $username;
-    var $password;
-    var $database;
-    var $conn;
+    protected $conn;
 
-
-    function __construct($h, $u, $p, $d)
-    {
-        $this->host = $h;
-        $this->username = $u;
-        $this->password = $p;
-        $this->database = $d;
-        $this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->database);
+    public function __construct(){
+        try {
+            $this->conn = new PDO("mysql:host=". DB_HOST.";dbname=". DB_NAME, DB_USER, DB_PASSWORD);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $error) {
+            echo "Connection failed: " . $error->getMessage();
+        }
     }
 
-    function makeConnection()
-    {
-        return $this->conn;
-    }
 }
-$database = new Connection("localhost", "root", "", "jobez");
-$conn = $database->makeConnection();
