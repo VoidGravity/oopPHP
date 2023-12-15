@@ -1,5 +1,8 @@
 <?php
 include_once '../controllers/registerLogic.php';
+
+include_once '../configs/app.config.php';
+
 ?>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
@@ -36,7 +39,7 @@ include_once '../controllers/registerLogic.php';
         <input type="Submit" value="Register Now">
       </div>
       <div class="text">
-        <h3>Already have an account? <a href="/login.php">Login now</a></h3>
+        <h3>Already have an account? <a href="./login.php">Login now</a></h3>
       </div>
     </form>
   </div>

@@ -1,5 +1,18 @@
 <?php
-require_once __DIR__ . "/../configs/app.config.php";
+session_start();
+
+if (isset($_SESSION['username'])) {
+    if ($_SESSION['role'] == 'admin') {
+        header('Location: ./dashboard.php');
+    } else {
+        header('Location: ./index.php');
+    }
+}
+
+require __DIR__ . "/../configs/app.config.php";
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -31,7 +44,7 @@ require_once __DIR__ . "/../configs/app.config.php";
 
                 <button type="submit"> submit</button>
                 <span style="color:red;"></span>
-                <div class="signup-link">Not a member? <a href="<?= ABS_URL ?>/views/register.php">Signup now</a></div>
+                <div class="signup-link">Not a member? <a href="<?= ABS_URL ?>/views/register.php">Sign up now</a></div>
             </form>
         </div>
     </div>

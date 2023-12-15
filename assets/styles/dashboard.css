@@ -171,7 +171,14 @@ a.sidebar_link:hover {
 
 /* agent */
 .Agents{
+    
     overflow-x: scroll;
+}
+.agentflex{
+    /* background: #252733; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 .bg-cont{
     background-color: #F2F5F5;

@@ -1,10 +1,10 @@
 <?php
 session_start();
-$username = $_SESSION['username'];
 
-
-if (!isset($_SESSION['username'])) {
-	header('Location: ./login.php');
+if (isset($_SESSION['username'])) {
+    if ($_SESSION['role'] == 'admin') {
+        header('Location: ./dashboard.php');
+    }
 }
 
 ?>
@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])) {
 		JobEase
 	</title>
 
-	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="../assets/styles/style.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -69,8 +69,10 @@ if (!isset($_SESSION['username'])) {
 						<li class="nav-item">
 							<a class="nav-link" href="login.php">Login</a>
 						</li>
+
+
 						<li class="nav-item">
-							<a class="nav-link" href="logout.php">log out</a>
+							<a class="nav-link" href="../controllers/logout.php">log out</a>
 						</li>
 
 
@@ -103,7 +105,7 @@ if (!isset($_SESSION['username'])) {
 
 	<!--------------------------  card  --------------------->
 	<section class="light">
-		<h2 class="text-center py-3">Latest Job Listings</h2>
+		<h2 class="text-center py-3">Latest Job listings</h2>
 		<div class="container py-2">
 
 			<article class="postcard light green">
@@ -123,7 +125,7 @@ if (!isset($_SESSION['username'])) {
 						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Maroc</li>
 						<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
 						<li class="tag__item play green">
-							<a href="#"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
+							<a href="userApply.php"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
 						</li>
 					</ul>
 				</div>
@@ -145,7 +147,7 @@ if (!isset($_SESSION['username'])) {
 						<li class="tag__item"><i class="fas fa-tag mr-2"></i>France</li>
 						<li class="tag__item"><i class="fas fa-clock mr-2"></i> 3 mins.</li>
 						<li class="tag__item play yellow">
-							<a href="#"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
+							<a href="userApply.php"><i class="fas fa-play mr-2"></i>APPLY NOW</a>
 						</li>
 					</ul>
 				</div>

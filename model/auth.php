@@ -13,7 +13,7 @@ class Auth extends Connection{
 
 
     public function isLoggedIn(){
-        return isset($_SESSION['username']);
+        return isset($_SESSION['role']);
     }
 
     public function getSessionParam($param){
@@ -31,16 +31,18 @@ class Auth extends Connection{
 
 
     public function login($username, $password){
-
+        
         $sql = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
         $sql->bindParam(":username", $username, PDO::PARAM_STR);
         $sql->execute();
-        // set the resulting array to associative
+
         $sql->setFetchMode(PDO::FETCH_OBJ);
         $user = $sql->fetch();
+        
         if ($user) {
             if (password_verify($password, $user->password)) {
                 $this->setSessionParam('username',$username);
+                $this->setSessionParam('role',$user->role_name);
                 return true;
             } else {
                 return false;
@@ -56,7 +58,7 @@ class Auth extends Connection{
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $email = $_POST['email'];
 
-            $sql = $this->conn->prepare("INSERT INTO users (username,password,email) VALUES (:username,:hash,:email)");
+            $sql = $this->conn->prepare("INSERT INTO users (username,password,email,role_name) VALUES (:username,:hash,:email,'candidat')");
             $sql->bindParam(":username", $username, PDO::PARAM_STR);
             $sql->bindParam(":hash", $hash, PDO::PARAM_STR);
             $sql->bindParam(":email", $email, PDO::PARAM_STR);
