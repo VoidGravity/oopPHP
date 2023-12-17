@@ -46,7 +46,7 @@ class OfferCrud extends Connection{
         $description = $_POST['userDescription'];
         $Position = $_POST['position'];
             
-    $sql = $this->conn->prepare("INSERT INTO employee (user_id,job_id,status, employee_description , position) VALUES (1, 1,?,?)");
+    $sql = $this->conn->prepare("INSERT INTO employee (user_id,job_id,status, employee_description , position) VALUES (1, 1,'active',?,?)");
     $sql->bindParam(1, $description);
     $sql->bindParam(2, $Position);
     $sql->execute();      
