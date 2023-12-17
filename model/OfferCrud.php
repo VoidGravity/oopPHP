@@ -6,27 +6,20 @@ class OfferCrud extends Connection{
     public function uploadImage() {
         $target_dir = "../assets/styles/dashboard/imag"; 
     
-        // Check if the "image" key exists in the $_FILES array
         if(isset($_FILES["image"])) {
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    
             $check = getimagesize($_FILES["image"]["tmp_name"]);
-            
-            // Check if the file is an image
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                
-                // Move the uploaded file to the target directory
+            if($check !== false) {  
                 move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
                 
-                return $target_file; // Return the uploaded image path
+                return $target_file;
             } else {
                 echo "File is not an image.";
-                return false; // Indicate failure
+                return false; 
             }
         } else {
             echo "No image file uploaded.";
-            return false; // Indicate failure
+            return false; 
         }
     }
     
@@ -65,6 +58,10 @@ class OfferCrud extends Connection{
         $stmt = $this->conn->query("SELECT * FROM jobs");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getActiveOffers() {
+        $stmt = $this->conn->query('SELECT * FROM jobs where status = "open"');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getUserOffers() {
         $stmt = $this->conn->query("SELECT * FROM employee JOIN jobs ON employee.user_id = jobs.user_id JOIN users ON users.id = employee.user_id");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -83,6 +80,16 @@ class OfferCrud extends Connection{
         $stmt->execute([$id]);
         header('Location: ../views/list.php');
     }
+    public function search($title, $company, $location) {
+        $sql = "SELECT * FROM jobs WHERE title = :title OR company = :company OR location = :location";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':company', $company, PDO::PARAM_STR);
+        $stmt->bindParam(':location', $location, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+      
 
 }
 if (isset($_POST['submit'])) {
@@ -103,24 +110,3 @@ if (isset($_POST['submitDelete'])) {
     $id = $_POST['OfferID'];                          
     $offerCrud->deleteOffer($id);
 }
-
-
-// Usage example:
-// $pdo = new PDO("mysql:host=localhost;dbname=your_database", "username", "password");
-// $offerCrud = new OfferCrud();
-// $offerCrud->pdo = $pdo;
-
-// Create a new offer
-// $offerCrud->createOffer("New Offer", "This is a new offer");
-
-// Get all offers
-// $offers = $offerCrud->getOffers();
-// foreach ($offers as $offer) {
-//     echo $offer['title'] . ": " . $offer['description'] . "<br>";
-// }
-
-// Update an offer
-// $offerCrud->updateOffer(1, "Updated Offer", "This offer has been updated");
-
-// Delete an offer
-// $offerCrud->deleteOffer(1);

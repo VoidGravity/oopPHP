@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+include_once '../configs/app.config.php';
+require __DIR__ . "/../model/OfferCrud.php";
 if (isset($_SESSION['username'])) {
     if ($_SESSION['role'] == 'admin') {
         header('Location: ./dashboard.php');
@@ -87,7 +88,7 @@ if (isset($_SESSION['username'])) {
 
 	<section action="#" method="get" class="search">
 		<h2>Find Your Dream Job</h2>
-		<form class="form-inline">
+		<form action="search.php" class="form-inline"  method="POST">
 			<div class="form-group mb-2">
 				<input type="text" name="keywords" placeholder="Keywords">
 
@@ -99,9 +100,10 @@ if (isset($_SESSION['username'])) {
 			<div class="form-group mx-sm-3 mb-2">
 				<input type="text" name="company" placeholder="Company">
 			</div>
-			<button type="submit" class="btn btn-primary mb-2">Search</button>
+			<button type="submit" name="submitS" class="btn btn-primary mb-2">Search</button>
 		</form>
 	</section>
+	
 
 	<!--------------------------  card  --------------------->
 	<section class="light">

@@ -9,6 +9,8 @@ if (isset($_SESSION['username'])) {
 
 include_once '../inc/registerLogic.php';
 include_once '../configs/app.config.php';
+require __DIR__ . "/../model/OfferCrud.php";
+
 
 
 
@@ -124,7 +126,14 @@ include_once '../configs/app.config.php';
                                     <div>
                                         <p class="mb-0">Offres</p>
                                         <div class="mt-4">
-                                            <h3><strong>18</strong></h3>
+                                            <h3><strong>
+                                                    <?php
+                                                    $offer = new OfferCrud();
+                                                    $offers = $offer->getOffers();
+                                                    echo count($offers);
+                                                    ?>
+                                                </strong></h3>
+
 
                                         </div>
                                     </div>
@@ -143,7 +152,13 @@ include_once '../configs/app.config.php';
                                     <div>
                                         <p class="mb-0">Active Offres</p>
                                         <div class="mt-4">
-                                            <h3><strong>132</strong></h3>
+                                            <h3><strong>
+                                                    <?php
+                                                    $offer = new OfferCrud();
+                                                    $offers = $offer->getActiveOffers();
+                                                    echo count($offers);
+                                                    ?>
+                                                </strong></h3>
 
                                         </div>
                                     </div>
@@ -160,9 +175,18 @@ include_once '../configs/app.config.php';
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between px-md-1">
                                     <div>
-                                        <p class="mb-0">Nombre visiteurs</p>
+                                        <p class="mb-0">Inactive offers</p>
                                         <div class="mt-4">
-                                            <h3><strong>12</strong></h3>
+                                            <h3><strong>
+                                                    <?php
+                                                    $offer = new OfferCrud();
+                                                    $offers = $offer->getActiveOffers();
+                                                    $totalOffers = $offer->getOffers();
+                                                    $active = count($offers);
+                                                    $inactive = count($totalOffers);
+                                                    echo - ($active - $inactive);
+                                                    ?>
+                                                </strong></h3>
                                             <!-- <p><strong></strong> Completed</p> -->
                                         </div>
                                     </div>
@@ -179,10 +203,18 @@ include_once '../configs/app.config.php';
                             <div class="card-body p-4">
                                 <div class="d-flex justify-content-between px-md-1">
                                     <div>
-                                        <p class="mb-0">Offres approuver</p>
+                                        <p class="mb-0">Approuved Offres</p>
                                         <div class="mt-4">
-                                            <h3><strong>76%</strong></h3>
-                                            <p><strong>57%</strong> Completed</p>
+                                            <h3><strong>
+
+                                                    <?php
+                                                    $offer = new OfferCrud();
+                                                    $offers = $offer->getOffers();
+                                                   $count = $offers["Approved"];
+                                                    echo "";
+                                                    ?>
+
+                                                </strong></h3>
                                         </div>
                                     </div>
                                     <div class="">
@@ -309,8 +341,8 @@ include_once '../configs/app.config.php';
 
     <!-- here we will add the stuff -->
     <!-- <script src="../assets/styles/dashboard/dashboard.js"></script> -->
-    <script src="<?=ABS_URL_dash?>dashboard.js"></script>
-    <script src="<?=ABS_URL_dash?>dashboard/script.js"></script>
+    <script src="<?= ABS_URL_dash ?>dashboard.js"></script>
+    <script src="<?= ABS_URL_dash ?>dashboard/script.js"></script>
 </body>
 
 </html>
