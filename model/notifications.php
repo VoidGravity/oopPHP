@@ -1,17 +1,17 @@
 <?php
 
-session_start();
-
 require_once __DIR__ . "/../inc/connection.php";
-
 class Notification extends Connection
 {
-
     public $id;
     public $title;
     public $content;
 
-
+    public function __construct()
+    {
+        parent::__construct();
+    }
+     
     public function save()
     {
         $sql = "INSERT INTO `notifications`(`title`, `content`) VALUES (:title, :content)";

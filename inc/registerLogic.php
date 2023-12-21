@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 require("../inc/connection.php");
 $passPattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";

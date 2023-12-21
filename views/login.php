@@ -1,5 +1,6 @@
 <?php
 session_start();
+require __DIR__ . "/../configs/app.config.php";
 
 if (isset($_SESSION['username'])) {
     if ($_SESSION['role'] == 'admin') {
@@ -8,11 +9,6 @@ if (isset($_SESSION['username'])) {
         header('Location: ./index.php');
     }
 }
-
-require __DIR__ . "/../configs/app.config.php";
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
