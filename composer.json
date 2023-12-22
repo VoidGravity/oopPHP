@@ -1,0 +1,17 @@
+{
+    "name": "abdel/oop-php",
+    "autoload": {
+        "psr-4": {
+            "Abdel\\OopPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VoidGravity",
+            "email": "abdellahbardichwork@gmal.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
