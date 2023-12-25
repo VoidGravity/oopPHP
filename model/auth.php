@@ -51,7 +51,7 @@ class Auth extends Connection{
                 echo 'Registration successful!';
                 return true;
             } else {
-                echo 'Registration failed!';
+                echo 'Registration2 failed!';
                 return false;
             }
         } else {

@@ -41,10 +41,11 @@ class RegisterController
         if (validatePassword($password) && $password === $password_conf) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $user = User::create($username, $hash, $email);
+            echo $user;
             if ($user) {
                 redirect('login');
             } else {
-                redirect('register?error=Registration failed!');
+                redirect('register?error=Registration failed!3');
             }
         } else {
             redirect('register?error=Invalid password');

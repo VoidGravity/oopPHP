@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . "/../configs/app.config.php";
-require_once __DIR__ . "/../model/OfferCrud.php";
 
 if (isset($_POST['search'])) {
     $kayword = $_POST["kayword"];

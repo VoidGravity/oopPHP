@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo 'Registration successful!';
             header('Location: login.php');
         } else {
-            echo 'Registration failed!';
+            echo 'Registration1 failed!';
         }
 
 
