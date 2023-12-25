@@ -4,7 +4,7 @@ include_once '../configs/app.config.php';
 require __DIR__ . "/../model/OfferCrud.php";
 if (isset($_SESSION['username'])) {
     if ($_SESSION['role'] == 'admin') {
-        header('Location: ./dashboard.php');
+        header('Location: ./dashboard');
     }
 }
 
