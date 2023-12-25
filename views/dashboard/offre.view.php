@@ -1,8 +1,3 @@
-<?php
-include_once '../configs/app.config.php';
-require __DIR__ . "/../model/OfferCrud.php";
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,19 +24,19 @@ require __DIR__ . "/../model/OfferCrud.php";
 
                 <ul class="sidebar_nav">
                     <li class="sidebar_item active" style="width: 100%;">
-                        <a href="dashboard.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
+                        <a href="<?= url("dashboard")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="candidat.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
+                        <a href="<?= url("dashboard/candidat")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="offre.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
+                        <a href="<?= url("dashboard/offre")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="contact.php" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
+                        <a href="<?= url("dashboard/contact")?>" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="list.php" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/articles.svg" alt="icon">list</a>
+                        <a href="<?= url("dashboard/list")?>" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/articles.svg" alt="icon">list</a>
                     </li>
 
 
@@ -71,9 +66,6 @@ require __DIR__ . "/../model/OfferCrud.php";
                                 <!-- <a href="#"><img src="<?= ABS_URL_dash ?>img/settingsno.svg" alt="icon"></a> -->
                             </div>
                             <?php
-
-                            $notification = new Notification();
-                            $notifications = $notification->getNotifications();
                             foreach ($notifications as $notification) {
                             ?>
                                 <div class="list-group-item px-3 d-flex"><img src="<?= ABS_URL_dash ?>img/notif.svg" alt="iconimage">
@@ -97,7 +89,7 @@ require __DIR__ . "/../model/OfferCrud.php";
                             <div class="dropdown-menu dropdown-menu-end position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
-                                <a class="dropdown-item" href="/PeoplePerTask/project/pages/index.html">Log out</a>
+                                <a class="dropdown-item" href="<?= url('logout') ?>">Log out</a>
                             </div>
                         </li>
                     </ul>
@@ -117,11 +109,8 @@ require __DIR__ . "/../model/OfferCrud.php";
                     </thead>
                     <tbody>
                         <?php
-                        $offer = new OfferCrud();
-                        $offers = $offer->getUserOffers();
-
                         foreach ($offers as $offer) {
-                            $statusbtn = ($offer["status"] != "active") ? '<a href="../controllers/offers.php?id=' . $offer["id"] . '&status=active"><img class="accept_task w-50" src="../assets/styles/dashboard/img/journal-check.svg" alt="icon" ></a>' : '<a href="../controllers/offers.php?id=' . $offer["id"] . '&status=closed"><img class="delet_user w-50" src="../assets/styles/dashboard/img/journal-x.svg" alt="icon"></a>';
+                            $statusbtn = ($offer["status"] != "active") ? '<a href="'.url('dashboard/offre/update').'?id=' . $offer["id"] . '&status=active"><img class="accept_task w-50" src="../assets/styles/dashboard/img/journal-check.svg" alt="icon" ></a>' : '<a href="'.url('dashboard/offre/update').'?id=' . $offer["id"] . '&status=closed"><img class="delet_user w-50" src="../assets/styles/dashboard/img/journal-x.svg" alt="icon"></a>';
                             echo '<tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">

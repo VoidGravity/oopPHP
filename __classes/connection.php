@@ -1,10 +1,13 @@
 <?php
 
-require_once __DIR__.'/../configs/db.config.php';
+namespace __classes;
+
+use PDO;
+use PDOException;
 
 class Connection
 {
-    protected $conn;
+    public $conn;
 
     public function __construct(){
         try {

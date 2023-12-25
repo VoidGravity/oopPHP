@@ -1,8 +1,3 @@
-<?php 
-
-include_once '../configs/app.config.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,19 +24,19 @@ include_once '../configs/app.config.php';
 
                 <ul class="sidebar_nav">
                     <li class="sidebar_item active" style="width: 100%;">
-                        <a href="dashboard.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
+                        <a href="<?= url("dashboard")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="candidat.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
+                        <a href="<?= url("dashboard/candidat")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="offre.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
+                        <a href="<?= url("dashboard/offre")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="contact.php" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
+                        <a href="<?= url("dashboard/contact")?>" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="list.php" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/articles.svg" alt="icon">list</a>
+                        <a href="<?= url("dashboard/list")?>" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/articles.svg" alt="icon">list</a>
                     </li>
                     
 
@@ -98,7 +93,7 @@ include_once '../configs/app.config.php';
                             <div class="dropdown-menu dropdown-menu-end position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
-                                <a class="dropdown-item" href="/PeoplePerTask/project/pages/index.html">Log out</a>
+                                <a class="dropdown-item" href="<?= url('logout') ?>">Log out</a>
                             </div>
                         </li>
                     </ul>

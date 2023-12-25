@@ -1,8 +1,3 @@
-<?php
-include_once '../configs/app.config.php';
-require __DIR__ . "/../model/OfferCrud.php";
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,16 +24,16 @@ require __DIR__ . "/../model/OfferCrud.php";
 
                 <ul class="sidebar_nav">
                     <li class="sidebar_item active" style="width: 100%;">
-                        <a href="dashboard.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
+                        <a href="<?= url("dashboard")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/1. overview.svg" alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="candidat.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
+                        <a href="<?= url("dashboard/candidat")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="offre.php" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
+                        <a href="<?= url("dashboard/offre")?>" class="sidebar_link"> <img src="<?= ABS_URL_dash ?>img/task.svg" alt="icon">Offre</a>
                     </li>
                     <li class="sidebar_item">
-                        <a href="contact.php" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
+                        <a href="<?= url("dashboard/contact")?>" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/agent.svg" alt="icon">Contact</a>
                     </li>
                     <li class="sidebar_item">
                         <a href="#" class="sidebar_link"><img src="<?= ABS_URL_dash ?>img/articles.svg" alt="icon">list</a>
@@ -68,22 +63,17 @@ require __DIR__ . "/../model/OfferCrud.php";
                             <div class="list-group-item px-3 d-flex justify-content-between align-items-center ">
                                 <p class="mt-auto">Notification</p><a href="#"><img src="<?= ABS_URL_dash ?>img/settingsno.svg" alt="icon"></a>
                             </div>
-                            <div class="list-group-item px-3 d-flex"><img src="<?= ABS_URL_dash ?>img/notif.svg" alt="iconimage">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text mb-3">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                    <small class="card-text">1 day ago</small>
+                            <?php
+                            foreach ($notifications as $notification) {
+                            ?>
+                                <div class="list-group-item px-3 d-flex"><img src="<?= ABS_URL_dash ?>img/notif.svg" alt="iconimage">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $notification['title'] ?></h5>
+                                        <p class="card-text mb-3"><?= $notification['content'] ?>.</p>
+                                        <small class="card-text"><?= $notification['created_at'] ?></small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item px-3 d-flex"><img src="<?= ABS_URL_dash ?>img/notif.svg" alt="iconimage">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text mb-3">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                    <small class="card-text">1 day ago</small>
-                                </div>
-                            </div>
+                            <?php } ?>
                             <div class="list-group-item px-3 text-center"><a href="#">View all notifications</a></div>
                         </div>
                     </div>
@@ -97,7 +87,7 @@ require __DIR__ . "/../model/OfferCrud.php";
                             <div class="dropdown-menu dropdown-menu-end position-absolute">
                                 <a class="dropdown-item" href="#">Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
-                                <a class="dropdown-item" href="/PeoplePerTask/project/pages/index.html">Log out</a>
+                                <a class="dropdown-item" href="<?= url('logout') ?>">Log out</a>
                             </div>
                         </li>
                     </ul>
@@ -107,8 +97,6 @@ require __DIR__ . "/../model/OfferCrud.php";
                 <section>
                     <table class="agent table align-middle bg-white" style="min-width: 700px;">
                         <thead class="bg-light">
-
-
                             <tr>
                                 <th>Title</th>
                                 <th>description</th>
@@ -121,8 +109,6 @@ require __DIR__ . "/../model/OfferCrud.php";
                         </thead>
                         <tbody>
                             <?php
-                            $offer = new OfferCrud();
-                            $offers = $offer->getOffers();
                             foreach ($offers as $offer) {
 
                                 echo '

@@ -12,22 +12,7 @@ class Auth extends Connection{
     private $passCheckRgex = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/";
 
 
-    public function isLoggedIn(){
-        return isset($_SESSION['role']);
-    }
-
-    public function getSessionParam($param){
-        return $_SESSION[$param];
-    }
-
-    public function setSessionParam($param,$value){
-        return $_SESSION[$param] = $value;
-    }
     
-    public function clearSession(){
-        session_destroy();
-        return true;
-    }
 
 
     public function login($username, $password){

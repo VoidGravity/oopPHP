@@ -1,15 +1,3 @@
-<?php
-session_start();
-require __DIR__ . "/../configs/app.config.php";
-
-if (isset($_SESSION['username'])) {
-    if ($_SESSION['role'] == 'admin') {
-        header('Location: ./dashboard.php');
-    } else {
-        header('Location: ./index.php');
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -19,7 +7,7 @@ if (isset($_SESSION['username'])) {
     <title>Login Form | CodingLab</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../assets/styles/loginstyle.css">
+    <link rel="stylesheet" href="<?= assets("styles/loginstyle.css") ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
 
@@ -29,7 +17,7 @@ if (isset($_SESSION['username'])) {
         <div class="wrapper">
             <div class="title"><span>Login Form</span></div>
             <h1></h1>
-            <form action="<?= ABS_URL ?>/controllers/login.php" method="POST">
+            <form action="<?= url("login") ?>" method="POST">
                 <div class="row">
                     <i class="fas fa-user"></i>
                     <input type="text" name="username" placeholder="Email or username" required>
@@ -42,7 +30,7 @@ if (isset($_SESSION['username'])) {
 
                 <button type="submit" class="btn btn-primary w-100 d-block"> submit</button>
                 <span style="color:red;"></span>
-                <div class="signup-link">Not a member? <a href="<?= ABS_URL ?>/views/register.php">Sign up now</a></div>
+                <div class="signup-link">Not a member? <a href="<?= url("register") ?>">Sign up now</a></div>
             </form>
         </div>
     </div>

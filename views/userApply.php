@@ -72,7 +72,7 @@ if (isset($_SESSION['username'])) {
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="../controllers/logout.php">log out</a>
+                            <a class="nav-link" href="<?= url('logout') ?>">log out</a>
                         </li>
 
 
