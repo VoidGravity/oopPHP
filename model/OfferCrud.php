@@ -1,7 +1,5 @@
 <?php
-require_once __DIR__ . "/../inc/connection.php";
-require_once __DIR__ . "/./notifications.php";
-
+namespace Model;
 class OfferCrud extends Connection
 {
 

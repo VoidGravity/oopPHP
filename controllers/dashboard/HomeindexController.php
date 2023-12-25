@@ -5,7 +5,7 @@ namespace controllers\dashboard;
 use Model\Job;
 use Model\Notification;
 
-class HomeController
+class HomeindexController
 {
     public function __construct()
     {
@@ -28,6 +28,6 @@ class HomeController
             "inActiveOffresCount" => $totalOffers - $activeOffers,
             "approuvedOffresCount" => $approvedOffers
         ];
-        return view('dashboard/home', $data);
+        return view('index', $data);
     }
 }

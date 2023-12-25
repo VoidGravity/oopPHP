@@ -6,9 +6,11 @@ class HomeController
     public function index()
     {
         $user = [
-            "name" => "aziz",
+            "name" => "abdellah",
             "last_name" => "bardich"
         ];
         echo view('test', $user);
     }
 }
+
+

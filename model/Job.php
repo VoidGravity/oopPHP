@@ -22,4 +22,5 @@ class Job{
         $stmt = (new Connection())->conn->query('SELECT * FROM jobs');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 }

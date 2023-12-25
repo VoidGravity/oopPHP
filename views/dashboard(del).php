@@ -3,7 +3,7 @@
 
 if (isset($_SESSION['username'])) {
     if ($_SESSION['role'] == 'candidat') {
-        header('Location: ./index.php');
+        header('Location: ./index');
     }
 }
 
