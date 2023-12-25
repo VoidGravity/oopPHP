@@ -5,9 +5,9 @@ require_once __DIR__."/../model/auth.php";
 session_start();
 
 $auth = new Auth();
-// if($auth->isLoggedIn()){
-//     header('Location: '.ABS_URL.'/views/login.php');
-// }
+if($auth->isLoggedIn()){
+    header('Location: '.ABS_URL.'/views/login.php');
+}
 // if (isset($_SESSION['username'])) {
 //     if ($_SESSION['role'] == 'admin') {
 //         header('Location: ./dashboard.php');
