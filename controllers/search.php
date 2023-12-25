@@ -11,7 +11,7 @@ if (isset($_POST['search'])) {
     $searchResults = $offerCrud->search($kayword, $company, $location);
 
     if ($searchResults) {
-        echo json_encode($searchResults);
+        return json_encode($searchResults);
     } else {
         echo 404;
     }

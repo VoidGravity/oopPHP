@@ -29,7 +29,11 @@ class LoginController
                 setSessionParam('id', $user->id);
                 setSessionParam('username', $username);
                 setSessionParam('role', $user->role_name);
-                redirect('dashboard');
+                if ($user->role_name == 'admin') {
+                    redirect('dashboard');
+                } else {
+                    redirect('index');
+                }
             } else {
                 redirect('login');
             }

@@ -17,7 +17,7 @@ searchForm.addEventListener('submit', function (event) {
     formData.append('company',company);
     formData.append('search',true)
 
-    fetch('../controllers/search.php',
+    fetch('./offers',
         {
             method: "POST",
             body: formData

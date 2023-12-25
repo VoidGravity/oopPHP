@@ -7,7 +7,7 @@ use controllers\dashboard\CandidatController;
 use controllers\dashboard\ContactController;
 use controllers\dashboard\HomeController;
 
-use controllers\dashboard\HomeindexController;
+
 
 use controllers\dashboard\ListController;
 use controllers\dashboard\OffreController;
@@ -29,5 +29,7 @@ Router::get('/dashboard/offre',OffreController::class,'index');
 Router::get('/dashboard/offre/update',OffreController::class,'updateStatus');
 Router::get('/dashboard/contact',ContactController::class,'index');
 Router::get('/dashboard/list',ListController::class,'index');
-Router::get('/index',HomeindexController::class,'index');
+Router::get('/index',controllers\condidate\HomeController::class,'index');
+Router::post('/offers',controllers\condidate\HomeController::class,'offers');
+
 // Router::get('/index',ListController::class,'index');

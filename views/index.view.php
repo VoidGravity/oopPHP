@@ -97,8 +97,10 @@
         <h2 class="text-center py-3">Latest Job listings</h2>
         <div class="container py-2" id="search-result">
         </div>
-    </section>
 
+
+        
+    </section>
 
 
 
