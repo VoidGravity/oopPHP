@@ -25,21 +25,21 @@ class HomeController
         ];
         return view('index', $data);
     }
-    public function offers()
+    public function offers($request)
     {
-        $jobs = Job::get();
+        $kayword = $request["kayword"];
+        $location = $request["location"];
+        $company = $request["company"];
+
+        $jobs = Job::search($kayword,$location,$company);
         $jobs = array_map(function ($job) {
             $job["image_path"] = assets($job["image_path"]);
-
             return $job;
         }, $jobs);
-
-        
-        
 
         header('Content-Type: application/json; charset=utf-8');
 
         echo (json_encode($jobs));
-        
+    
     }
 }

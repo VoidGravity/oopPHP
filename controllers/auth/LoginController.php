@@ -40,5 +40,6 @@ class LoginController
         } else {
             redirect('login');
         }
+        
     }
 }
